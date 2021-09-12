@@ -1,0 +1,28 @@
+{
+  "name": "Spotify-Statistics",
+  "version": "1.0.0",
+  "description": "Web application to view different statistics of your Spotify account.\r - Top 5 artists listened to forever\r - Top 5 artists listened to in the last month",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fernando74lr/Spotify-Statistics.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fernando74lr/Spotify-Statistics/issues"
+  },
+  "homepage": "https://github.com/Fernando74lr/Spotify-Statistics#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cookieparser": "^0.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "querystring": "^0.2.1",
+    "request": "^2.88.2"
+  }
+}
