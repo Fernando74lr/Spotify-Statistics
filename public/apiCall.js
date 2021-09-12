@@ -93,7 +93,6 @@
 				success: function(response) {
 					console.log("Top Songs Several Years");
 					console.log(response);
-
 					$('#login').hide();
 				}
 			});
