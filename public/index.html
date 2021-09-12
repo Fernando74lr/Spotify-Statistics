@@ -12,6 +12,16 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous"
     >
+    <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+        crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="styles.css">
   </head>
 
@@ -21,48 +31,146 @@
         <h1>Authorization Code</h1>
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
       </div>
-      <div id="loggedin">
-        <div id="user-profile">
-        </div>
-        <div id="oauth">
-        </div>
-      </div>
     </div>
 
-    <script id="user-profile-template" type="text/x-handlebars-template">
-        <div id="dashboard">
-            <div id="user-profile">
-                <div id="user-profile-picture">
-                    <img
-                        id="profile-picture"
-                        src="https://i.scdn.co/image/ab6775700000ee851c90d60724c13510cfdb19a8"
-                        alt="user-profile-picture"
-                    >
-                </div>
-                <div id="username">
-                    <h4>Fernando López Ramírez</h4>
-                </div>
-                <div id="contact-info">
-                    <a href="#">About us</a>
-                    <a href="#">Contact</a>
-                </div>
+    <div id="dashboard" class="d-none">
+        <div id="user-profile">
+            <div id="user-profile-picture">
+                <img
+                    id="profile-picture"
+                    alt="user-profile-picture"
+                >
             </div>
-    
-            <div id="statistics">
-    
+            <div id="username">
+                <h4></h4>
+            </div>
+            <div id="contact-info">
+                <a href="#">About us</a>
+                <a href="#">Contact</a>
             </div>
         </div>
-    </script>
 
-    <script id="oauth-template" type="text/x-handlebars-template">
-      <h2>oAuth info</h2>
-      <dl class="dl-horizontal">
-        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-      </dl>
+        <div id="statistics">
+            <div id="title" class="mb-3">
+                <h2>Your top 10</h2>
+            </div>
+            <div id="tops">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="songs-forever-tab" data-bs-toggle="tab" data-bs-target="#songs-forever" type="button" role="tab" aria-controls="songs-forever" aria-selected="true">Songs of all time</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="songs-last-month-tab" data-bs-toggle="tab" data-bs-target="#songs-last-month" type="button" role="tab" aria-controls="songs-last-month" aria-selected="false">Songs of the last month</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="artists-forever-tab" data-bs-toggle="tab" data-bs-target="#artists-forever" type="button" role="tab" aria-controls="artists-forever" aria-selected="false">Artists of all time</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="artists-last-month-tab" data-bs-toggle="tab" data-bs-target="#artists-last-month" type="button" role="tab" aria-controls="artists-last-month" aria-selected="false">Artists of the last month</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="albums-tab" data-bs-toggle="tab" data-bs-target="#albums" type="button" role="tab" aria-controls="albums" aria-selected="false">Albums</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="genres-tab" data-bs-toggle="tab" data-bs-target="#genres" type="button" role="tab" aria-controls="genres" aria-selected="false">Genres</button>
+                    </li>
+                </ul>
+                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="songs-forever" role="tabpanel" aria-labelledby="songs-forever-tab">
+                        <ol>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                    </div>
+                    <div class="tab-pane fade" id="songs-last-month" role="tabpanel" aria-labelledby="songs-last-month-tab">
+                        <ol>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                    </div>
+                    <div class="tab-pane fade" id="artists-forever" role="tabpanel" aria-labelledby="artists-forever-tab">
+                        <ol>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                    </div>
+                    <div class="tab-pane fade show" id="artists-last-month" role="tabpanel" aria-labelledby="artists-last-month-tab">
+                        <ol>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                    </div>
+                    <div class="tab-pane fade" id="albums" role="tabpanel" aria-labelledby="albums-tab">
+                        <ol>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                    </div>
+                    <div class="tab-pane fade" id="genres" role="tabpanel" aria-labelledby="genres-tab">
+                        <ol>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
     </script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="apiCall.js"></script>
   </body>
 </html>

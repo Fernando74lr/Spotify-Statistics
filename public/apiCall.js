@@ -9,14 +9,6 @@
 		return hashParams;
 	}
 
-	var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-		userProfileTemplate = Handlebars.compile(userProfileSource),
-		userProfilePlaceholder = document.getElementById('user-profile');
-
-	var oauthSource = document.getElementById('oauth-template').innerHTML,
-		oauthTemplate = Handlebars.compile(oauthSource),
-		oauthPlaceholder = document.getElementById('oauth');
-
 	var params = getHashParams();
 
 	var access_token = params.access_token,
@@ -32,11 +24,6 @@
 		alert('There was an error during the authentication');
 	} else {
 		if (access_token) {
-			// render oauth info
-			oauthPlaceholder.innerHTML = oauthTemplate({
-				access_token: access_token
-			});
-
 			// This is for User's Profile
 			$.ajax({
 				url: 'https://api.spotify.com/v1/me',
@@ -46,10 +33,12 @@
 				success: function(response) {
 					console.log("User's Data");
 					console.log(response);
-					userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-
+                    
 					$('#login').hide();
-					$('#loggedin').show();
+                    
+                    $('#dashboard').removeClass('d-none');
+                    $('#username h4').html(response.display_name);
+                    $('#profile-picture').attr('src', response.images[0].url);
 				}
 			});
 
@@ -64,7 +53,6 @@
 					console.log(response);
 
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -79,7 +67,6 @@
 					console.log(response);
 
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -94,7 +81,6 @@
 					console.log(response);
 
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -109,7 +95,6 @@
 					console.log(response);
 
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -152,7 +137,6 @@
 					console.log(topAlbum);
 
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -199,7 +183,6 @@
 					console.log(topGenres);
 
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
