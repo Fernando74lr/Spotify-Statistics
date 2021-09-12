@@ -83,18 +83,33 @@
 
         // This is for top songs short-term
         $.ajax({
-          url: 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10&offset=0',
-          headers: {
-            'Authorization': 'Bearer ' + access_token
-          },
-          success: function(response) {
-              console.log("Top Songs In The Last Month");
-              console.log(response);
+            url: 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10&offset=0',
+            headers: {
+                'Authorization': 'Bearer ' + access_token
+            },
+            success: function(response) {
+                console.log("Top Songs In The Last Month");
+                console.log(response);
 
-            $('#login').hide();
-            $('#loggedin').show();
-          }
-      });
+                $('#login').hide();
+                $('#loggedin').show();
+            }
+        });
+
+        // This is for top songs long-term
+        $.ajax({
+            url: 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10&offset=0',
+            headers: {
+                'Authorization': 'Bearer ' + access_token
+            },
+            success: function(response) {
+                console.log("Top Songs Several Years");
+                console.log(response);
+
+                $('#login').hide();
+                $('#loggedin').show();
+            }
+        });
 
       } else {
           // render initial screen
