@@ -12,17 +12,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous"
     >
-    <style type="text/css">
-      #login, #loggedin {
-        display: none;
-      }
-      .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
@@ -40,23 +30,28 @@
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
-      <div class="media">
-        <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
+        <div id="dashboard">
+            <div id="user-profile">
+                <div id="user-profile-picture">
+                    <img
+                        id="profile-picture"
+                        src="https://i.scdn.co/image/ab6775700000ee851c90d60724c13510cfdb19a8"
+                        alt="user-profile-picture"
+                    >
+                </div>
+                <div id="username">
+                    <h4>Fernando López Ramírez</h4>
+                </div>
+                <div id="contact-info">
+                    <a href="#">About us</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+    
+            <div id="statistics">
+    
+            </div>
         </div>
-        <div class="media-body">
-          <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
-          </dl>
-        </div>
-      </div>
     </script>
 
     <script id="oauth-template" type="text/x-handlebars-template">
