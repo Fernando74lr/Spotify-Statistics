@@ -60,7 +60,6 @@
             success: function(response) {
                 console.log("Top Artist In The Last Month");
                 console.log(response);
-              //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
               $('#login').hide();
               $('#loggedin').show();
@@ -76,12 +75,26 @@
             success: function(response) {
                 console.log("Top Artist Several Years");
                 console.log(response);
-              //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
               $('#login').hide();
               $('#loggedin').show();
             }
         });
+
+        // This is for top songs short-term
+        $.ajax({
+          url: 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10&offset=0',
+          headers: {
+            'Authorization': 'Bearer ' + access_token
+          },
+          success: function(response) {
+              console.log("Top Songs In The Last Month");
+              console.log(response);
+
+            $('#login').hide();
+            $('#loggedin').show();
+          }
+      });
 
       } else {
           // render initial screen
