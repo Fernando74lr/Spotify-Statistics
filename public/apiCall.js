@@ -52,6 +52,26 @@
 					console.log("Top Artist In The Last Month");
 					console.log(response);
 
+					(response.items).forEach(item => {
+                        $('#artists-last-month ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.images[0].url}" alt="album-song">
+                                    <p
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
 					$('#login').hide();
 				}
 			});
@@ -66,6 +86,26 @@
 					console.log("Top Artist Several Years");
 					console.log(response);
 
+					(response.items).forEach(item => {
+                        $('#artists-forever ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.images[0].url}" alt="album-song">
+                                    <p
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
 					$('#login').hide();
 				}
 			});
@@ -79,6 +119,26 @@
 				success: function(response) {
 					console.log("Top Songs In The Last Month");
 					console.log(response);
+
+					(response.items).forEach(item => {
+                        $('#songs-last-month ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.album.images[0].url}" alt="album-song">
+                                    <p
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
 
 					$('#login').hide();
 				}
