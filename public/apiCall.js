@@ -42,7 +42,8 @@
               'Authorization': 'Bearer ' + access_token
             },
             success: function(response) {
-                console.log(response);
+            console.log("User's Data");
+            console.log(response);
               userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
               $('#login').hide();
@@ -57,7 +58,23 @@
               'Authorization': 'Bearer ' + access_token
             },
             success: function(response) {
-                console.log("Top Artist");
+                console.log("Top Artist In The Last Month");
+                console.log(response);
+              //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
+              $('#login').hide();
+              $('#loggedin').show();
+            }
+        });
+
+        // This is for top artist long-term
+        $.ajax({
+            url: 'https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10&offset=0',
+            headers: {
+              'Authorization': 'Bearer ' + access_token
+            },
+            success: function(response) {
+                console.log("Top Artist Several Years");
                 console.log(response);
               //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
