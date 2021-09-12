@@ -26,6 +26,9 @@
     var access_token = params.access_token,
         error = params.error;
 
+    // Variable for top album
+    var topAlbum = [];
+
     if (error) {
       alert('There was an error during the authentication');
     } else {
@@ -111,6 +114,49 @@
             }
         });
 
+        // This is for top almbus long-term (50 songs)
+        $.ajax({
+          url: 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50&offset=0',
+          headers: {
+              'Authorization': 'Bearer ' + access_token
+          },
+          success: function(response) {
+            (response.items).forEach(element => {
+              topAlbum.push(element.album.name);
+            });
+              // Temporal variables
+              var count = 0;
+              var topAlbumTemp = [];
+              var flag = true;
+              for (let i = 0; i < topAlbum.length; i++) {               
+                topAlbumTemp.forEach(element => {
+                  if(element.name == topAlbum[i])
+                    flag = false;
+                });
+                
+                if(flag){
+                  for (let j = 0; j < topAlbum.length; j++)
+                    if(topAlbum[i] == topAlbum[j])
+                      count++;
+
+                  topAlbumTemp.push({
+                    name: topAlbum[i],
+                    repeated: count
+                  });
+                  count = 0;
+                }
+                flag = true;
+              }
+
+              topAlbum = bubbleSort(topAlbumTemp);
+              console.log("Top Album Several Years");
+              console.log(topAlbum);
+
+              $('#login').hide();
+              $('#loggedin').show();
+          }
+      });
+
       } else {
           // render initial screen
           $('#login').show();
@@ -118,3 +164,22 @@
       }
     }
 })();
+
+
+// Sort the array of objects using Bubble Sort
+function bubbleSort(array) {
+  let temp = 0, count = 0;
+  while(count != array.length) {
+      array.forEach(function(status, i) {
+          if (array[i + 1]) {
+              if (status.repeated > array[i + 1].repeated) {
+                  temp = array[i + 1];
+                  array[i + 1] = status;
+                  array[i] = temp;
+              }
+          }
+      });
+      count++;
+  }
+  return array.reverse();
+}
