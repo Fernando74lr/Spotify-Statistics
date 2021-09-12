@@ -93,6 +93,28 @@
 				success: function(response) {
 					console.log("Top Songs Several Years");
 					console.log(response);
+
+                    (response.items).forEach(item => {
+                        $('#songs-forever ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.album.images[0].url}" alt="album-song">
+                                    <p
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
+
 					$('#login').hide();
 				}
 			});
@@ -211,4 +233,40 @@ function bubbleSort(array) {
 		count++;
 	}
 	return array.reverse();
+}
+
+// Copy to clipboard
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).attr("data-link")).select();
+    document.execCommand("copy");
+    $temp.remove();
+    toast('Copied song link to clipboard!');
+}
+
+// Enable Tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+const toast = (msg) => {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        width: 300,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: msg
+      })
 }
