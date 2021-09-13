@@ -11,7 +11,7 @@ const { keys } = require('./secret');
 
 const client_id = keys.CLIENT_ID; // client id
 const client_secret = keys.CLIENT_SECRET; // secret
-const redirect_uri = 'http://34.125.111.8/callback/'; // redirect uri
+const redirect_uri = 'http://34.125.85.115/callback/'; // redirect uri
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
