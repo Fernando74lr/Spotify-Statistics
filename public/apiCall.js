@@ -9,14 +9,6 @@
 		return hashParams;
 	}
 
-	var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-		userProfileTemplate = Handlebars.compile(userProfileSource),
-		userProfilePlaceholder = document.getElementById('user-profile');
-
-	var oauthSource = document.getElementById('oauth-template').innerHTML,
-		oauthTemplate = Handlebars.compile(oauthSource),
-		oauthPlaceholder = document.getElementById('oauth');
-
 	var params = getHashParams();
 
 	var access_token = params.access_token,
@@ -32,11 +24,6 @@
 		alert('There was an error during the authentication');
 	} else {
 		if (access_token) {
-			// render oauth info
-			oauthPlaceholder.innerHTML = oauthTemplate({
-				access_token: access_token
-			});
-
 			// This is for User's Profile
 			$.ajax({
 				url: 'https://api.spotify.com/v1/me',
@@ -46,10 +33,12 @@
 				success: function(response) {
 					console.log("User's Data");
 					console.log(response);
-					userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-
+                    
 					$('#login').hide();
-					$('#loggedin').show();
+                    
+                    $('#dashboard').removeClass('d-none');
+                    $('#username h4').html(response.display_name);
+                    $('#profile-picture').attr('src', response.images[0].url);
 				}
 			});
 
@@ -63,8 +52,28 @@
 					console.log("Top Artist In The Last Month");
 					console.log(response);
 
+					(response.items).forEach(item => {
+                        $('#artists-last-month ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.images[0].url}" alt="album-song">
+                                    <p
+										class="color-link"
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -78,8 +87,28 @@
 					console.log("Top Artist Several Years");
 					console.log(response);
 
+					(response.items).forEach(item => {
+                        $('#artists-forever ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.images[0].url}" alt="album-song">
+                                    <p
+										class="color-link"
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -93,8 +122,28 @@
 					console.log("Top Songs In The Last Month");
 					console.log(response);
 
+					(response.items).forEach(item => {
+                        $('#songs-last-month ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.album.images[0].url}" alt="album-song">
+                                    <p
+										class="color-link"
+										id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -108,8 +157,29 @@
 					console.log("Top Songs Several Years");
 					console.log(response);
 
+                    (response.items).forEach(item => {
+                        $('#songs-forever ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.album.images[0].url}" alt="album-song">
+                                    <p
+										class="color-link"
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
+
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -121,7 +191,12 @@
 				},
 				success: function(response) {
 					(response.items).forEach(element => {
-						topAlbum.push(element.album.name);
+						topAlbum.push({
+							name: element.album.name,
+							image: element.album.images[0].url,
+							id: element.id,
+							url: element.album.external_urls.spotify
+						});
 					});
 					// Temporal variables
 					var count = 0;
@@ -129,30 +204,55 @@
 					var flag = true;
 					for (let i = 0; i < topAlbum.length; i++) {
 						topAlbumTemp.forEach(element => {
-							if (element.name == topAlbum[i])
+							if (element.name == topAlbum[i].name)
 								flag = false;
 						});
 
 						if (flag) {
 							for (let j = 0; j < topAlbum.length; j++)
-								if (topAlbum[i] == topAlbum[j])
+								if (topAlbum[i].name == topAlbum[j].name)
 									count++;
 
 							topAlbumTemp.push({
-								name: topAlbum[i],
-								repeated: count
+								name: topAlbum[i].name,
+								repeated: count,
+								image: topAlbum[i].image,
+								id: topAlbum[i].id,
+								url: topAlbum[i].url
 							});
 							count = 0;
 						}
 						flag = true;
 					}
 
+					console.log(topAlbum);
+					console.log(topAlbumTemp);
 					topAlbum = bubbleSort(topAlbumTemp);
 					console.log("Top Album Several Years");
 					console.log(topAlbum);
 
+					for (let i = 0; i < 10; i++) {
+						$('#albums ul').append(`
+								<li>
+									<div id="item-frame">
+										<img src="${topAlbum[i].image}" alt="album-song">
+										<p
+											class="color-link"
+											id="${topAlbum[i].id}"
+											onclick="copyToClipboard('#${topAlbum[i].id}')"
+											data-bs-toggle="tooltip"
+											data-bs-placement="bottom"
+											title="Click to share it!"
+											data-link="${topAlbum[i].url}"
+										>
+											${topAlbum[i].name}
+										</p>
+									</div>
+								</li>
+							`);
+					}
+
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -198,8 +298,17 @@
 					console.log("Top Genres");
 					console.log(topGenres);
 
+					for (let i = 0; i < 10; i++) {
+						$('#genres ul').append(`
+								<li class="list-group-item list-style">
+									<p>
+										${topGenres[i].name}
+									</p>
+								</li>
+							`);
+					}
+
 					$('#login').hide();
-					$('#loggedin').show();
 				}
 			});
 
@@ -229,4 +338,62 @@ function bubbleSort(array) {
 		count++;
 	}
 	return array.reverse();
+}
+
+// Copy to clipboard
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).attr("data-link")).select();
+    document.execCommand("copy");
+    $temp.remove();
+    toast('Copied song link to clipboard!');
+}
+
+// Enable Tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+const toast = (msg) => {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        width: 300,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: msg
+      })
+}
+
+const submitForm = () => {
+    let email = $('#email').val();
+    let subject = $('#subject').val();
+    let msg = $('#message').val();
+
+    // This is for top genres long-term (50 artists)
+    $.ajax({
+        dataType: "json",
+        url: `http://localhost:8888/sendEmail?email=${email}&subject=${subject}&msg=${msg}`,
+        method: 'GET',
+        success: function(response) {
+            console.log(response);
+            if (response.ok) {
+                toast(response.message);
+                $('#form-contact').trigger("reset");
+                $('#modal-contact').modal('hide');
+            }
+        }});
+    
+    console.log("Probando");
 }
