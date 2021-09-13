@@ -384,7 +384,7 @@ const submitForm = () => {
     // This is for top genres long-term (50 artists)
     $.ajax({
         dataType: "json",
-        url: `http://localhost:8888/sendEmail?email=${email}&subject=${subject}&msg=${msg}`,
+        url: `http://34.125.111.8/sendEmail?email=${email}&subject=${subject}&msg=${msg}`,
         method: 'GET',
         success: function(response) {
             // console.log(response);
