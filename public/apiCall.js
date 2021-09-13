@@ -31,8 +31,8 @@
 					'Authorization': 'Bearer ' + access_token
 				},
 				success: function(response) {
-					console.log("User's Data");
-					console.log(response);
+					// console.log("User's Data");
+					// console.log(response);
                     
 					$('#login').hide();
                     
@@ -49,8 +49,8 @@
 					'Authorization': 'Bearer ' + access_token
 				},
 				success: function(response) {
-					console.log("Top Artist In The Last Month");
-					console.log(response);
+					// console.log("Top Artist In The Last Month");
+					// console.log(response);
 
 					(response.items).forEach(item => {
                         $('#artists-last-month ul').append(`
@@ -84,8 +84,8 @@
 					'Authorization': 'Bearer ' + access_token
 				},
 				success: function(response) {
-					console.log("Top Artist Several Years");
-					console.log(response);
+					// console.log("Top Artist Several Years");
+					// console.log(response);
 
 					(response.items).forEach(item => {
                         $('#artists-forever ul').append(`
@@ -119,8 +119,8 @@
 					'Authorization': 'Bearer ' + access_token
 				},
 				success: function(response) {
-					console.log("Top Songs In The Last Month");
-					console.log(response);
+					// console.log("Top Songs In The Last Month");
+					// console.log(response);
 
 					(response.items).forEach(item => {
                         $('#songs-last-month ul').append(`
@@ -154,8 +154,8 @@
 					'Authorization': 'Bearer ' + access_token
 				},
 				success: function(response) {
-					console.log("Top Songs Several Years");
-					console.log(response);
+					// console.log("Top Songs Several Years");
+					// console.log(response);
 
                     (response.items).forEach(item => {
                         $('#songs-forever ul').append(`
@@ -225,11 +225,11 @@
 						flag = true;
 					}
 
-					console.log(topAlbum);
-					console.log(topAlbumTemp);
+					// console.log(topAlbum);
+					// console.log(topAlbumTemp);
 					topAlbum = bubbleSort(topAlbumTemp);
-					console.log("Top Album Several Years");
-					console.log(topAlbum);
+					// console.log("Top Album Several Years");
+					// console.log(topAlbum);
 
 					for (let i = 0; i < 10; i++) {
 						$('#albums ul').append(`
@@ -295,8 +295,8 @@
 					}
 
 					topGenres = bubbleSort(topGenresTemp);
-					console.log("Top Genres");
-					console.log(topGenres);
+					// console.log("Top Genres");
+					// console.log(topGenres);
 
 					for (let i = 0; i < 10; i++) {
 						$('#genres ul').append(`
@@ -347,7 +347,7 @@ function copyToClipboard(element) {
     $temp.val($(element).attr("data-link")).select();
     document.execCommand("copy");
     $temp.remove();
-    toast('Copied song link to clipboard!');
+    toast('success', 'Copied link to clipboard!');
 }
 
 // Enable Tooltips
@@ -356,7 +356,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
-const toast = (msg) => {
+const toast = (type, msg) => {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -371,7 +371,7 @@ const toast = (msg) => {
       })
       
       Toast.fire({
-        icon: 'success',
+        icon: type, // success, error, info, warning
         title: msg
       })
 }
@@ -387,13 +387,15 @@ const submitForm = () => {
         url: `http://localhost:8888/sendEmail?email=${email}&subject=${subject}&msg=${msg}`,
         method: 'GET',
         success: function(response) {
-            console.log(response);
+            // console.log(response);
             if (response.ok) {
-                toast(response.message);
+                toast('success', response.message);
                 $('#form-contact').trigger("reset");
                 $('#modal-contact').modal('hide');
+            } else {
+                toast('error', 'Sorry, something went wrong :(');
             }
         }});
     
-    console.log("Probando");
+    // console.log("Probando");
 }
