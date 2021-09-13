@@ -160,13 +160,13 @@
                 <div class="modal-body">
                     <div class="container">
                         <h1 class="mb-3" style="text-align: center;">Contact</h1>
-                        <form>
+                        <form id="form-contact">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                                 <input
                                     type="email"
                                     class="form-control"
-                                    id="exampleInputEmail1"
+                                    id="email"
                                     aria-describedby="emailHelp"
                                     autocomplete="off"
                                 >
@@ -193,12 +193,17 @@
                                 >
                                 </textarea>
                             </div>
-
-                            <div style="justify-content: center; text-align: center;">
-                                <button type="submit" class="btn btn-primary" style="justify-content: center;">Send</button>
-                            </div>
-                            
                         </form>
+                        <div style="justify-content: center; text-align: center;">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                style="justify-content: center;"
+                                onclick="submitForm()"
+                            >
+                                Send
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

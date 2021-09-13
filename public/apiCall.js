@@ -370,3 +370,25 @@ const toast = (msg) => {
         title: msg
       })
 }
+
+const submitForm = () => {
+    let email = $('#email').val();
+    let subject = $('#subject').val();
+    let msg = $('#message').val();
+
+    // This is for top genres long-term (50 artists)
+    $.ajax({
+        dataType: "json",
+        url: `http://localhost:8888/sendEmail?email=${email}&subject=${subject}&msg=${msg}`,
+        method: 'GET',
+        success: function(response) {
+            console.log(response);
+            if (response.ok) {
+                toast(response.message);
+                $('#form-contact').trigger("reset");
+                $('#modal-contact').modal('hide');
+            }
+        }});
+    
+    console.log("Probando");
+}
