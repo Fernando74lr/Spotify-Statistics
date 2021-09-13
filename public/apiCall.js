@@ -382,7 +382,7 @@ const submitForm = () => {
     let msg = $('#message').val();
 
     // This is for top genres long-term (50 artists)
-    $.ajax({
+    /*$.ajax({
         dataType: "json",
         url: `http://34.125.111.8/sendEmail?email=${email}&subject=${subject}&msg=${msg}`,
         method: 'GET',
@@ -396,6 +396,8 @@ const submitForm = () => {
                 toast('error', 'Sorry, something went wrong :(');
             }
         }});
-    
+    */
+     $('#form-contact').trigger("reset");
+     $('#modal-contact').modal('hide');
     // console.log("Probando");
 }
