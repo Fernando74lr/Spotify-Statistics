@@ -11,7 +11,7 @@ const { keys } = require('./secret');
 
 const client_id = keys.CLIENT_ID; // client id
 const client_secret = keys.CLIENT_SECRET; // secret
-const redirect_uri = 'http://localhost:8888/callback/'; // redirect uri
+const redirect_uri = 'http://34.125.111.8/callback/'; // redirect uri
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -26,10 +26,10 @@ var transporter = nodemailer.createTransport({
 async function sendEmail(emailOptions, res) {
     transporter.sendMail(emailOptions, function (error, info) {
         if (error) {
-            console.log(error);
+            // console.log(error);
             throw error;
         } else {
-            console.log('EMAIL SENT SUCCESSFULLY! ✅')//: ' + info.response);
+            // console.log('EMAIL SENT SUCCESSFULLY! ✅')//: ' + info.response);
             res.json({
                 ok: true,
                 message: 'Email sent successfully!'
@@ -69,7 +69,7 @@ app.get('/login', function(req, res) {
         scope: scope,
         redirect_uri: redirect_uri,
         state: state
-        }));
+    }));
 });
 
 // .../sendEmail?email=${}&subject=${}&msg=${}
@@ -78,7 +78,7 @@ app.get('/sendEmail', async (req, res) => {
     const subject = req.query.subject;
     const msg = req.query.msg;
 
-    console.log([email, subject, msg]);
+    // console.log([email, subject, msg]);
 
     const emailOptions = {
         from: email, // Sender address, example: '"Labopat" <pruebas.labopat@gmail.com>'
@@ -138,7 +138,7 @@ app.get('/callback', function(req, res) {
 
             // Use the access token to access the Spotify Web API
             request.get(options, function(error, response, body) {
-                console.log(body);
+                // console.log(body);
             });
 
             // Pass the token to the browser to make requests from there
@@ -156,5 +156,5 @@ app.get('/callback', function(req, res) {
     }
 });
 
-console.log('Listening on 8888');
-app.listen(8888);
+console.log('Listening on 8081');
+app.listen(8081);
