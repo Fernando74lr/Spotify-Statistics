@@ -58,6 +58,7 @@
                                 <div id="item-frame">
                                     <img src="${item.images[0].url}" alt="album-song">
                                     <p
+										class="color-link"
                                         id="${item.id}"
                                         onclick="copyToClipboard('#${item.id}')"
                                         data-bs-toggle="tooltip"
@@ -92,6 +93,7 @@
                                 <div id="item-frame">
                                     <img src="${item.images[0].url}" alt="album-song">
                                     <p
+										class="color-link"
                                         id="${item.id}"
                                         onclick="copyToClipboard('#${item.id}')"
                                         data-bs-toggle="tooltip"
@@ -126,7 +128,8 @@
                                 <div id="item-frame">
                                     <img src="${item.album.images[0].url}" alt="album-song">
                                     <p
-                                        id="${item.id}"
+										class="color-link"
+										id="${item.id}"
                                         onclick="copyToClipboard('#${item.id}')"
                                         data-bs-toggle="tooltip"
                                         data-bs-placement="bottom"
@@ -160,6 +163,7 @@
                                 <div id="item-frame">
                                     <img src="${item.album.images[0].url}" alt="album-song">
                                     <p
+										class="color-link"
                                         id="${item.id}"
                                         onclick="copyToClipboard('#${item.id}')"
                                         data-bs-toggle="tooltip"
@@ -233,6 +237,7 @@
 									<div id="item-frame">
 										<img src="${topAlbum[i].image}" alt="album-song">
 										<p
+											class="color-link"
 											id="${topAlbum[i].id}"
 											onclick="copyToClipboard('#${topAlbum[i].id}')"
 											data-bs-toggle="tooltip"
@@ -295,7 +300,7 @@
 
 					for (let i = 0; i < 10; i++) {
 						$('#genres ul').append(`
-								<li class="list-group-item">
+								<li class="list-group-item list-style">
 									<p>
 										${topGenres[i].name}
 									</p>
