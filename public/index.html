@@ -37,7 +37,7 @@
             </div>
             <div id="contact-info">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#modal-contact-info">About us</a>
-                <a href="#">Contact</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-contact">Contact</a>
             </div>
         </div>
 
@@ -109,46 +109,99 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal-contact-info" tabindex="-1" aria-labelledby="modal-contact-infoLabel" aria-hidden="true">
+    <!-- Modal About Us -->
+    <div class="modal fade" id="modal-contact-info" tabindex="-1" aria-labelledby="modal-contact-infoLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content" style="width: 800px; margin-left: -150px;">
-            <div class="modal-body">
-                <div class="container">
-                    <h1 class="mb-5" style="text-align: center;">About us</h1>
-                    <div class="user-contact">
-                        <div class="img-user">
-                            <img
-                                style="margin-top: -20px;"
-                                src="https://avatars.githubusercontent.com/u/39963559?s=400&u=8bf2e8589ffceba2ac7b3d8eda2f703ca7a69fd7&v=4"
-                                alt="user-img"
-                            >
+            <div class="modal-content" style="width: 800px; margin-left: -150px;">
+                <div class="modal-body">
+                    <div class="container">
+                        <h1 class="mb-5" style="text-align: center;">About us</h1>
+                        <div class="user-contact">
+                            <div class="img-user">
+                                <img style="margin-top: -20px;"
+                                    src="https://avatars.githubusercontent.com/u/39963559?s=400&u=8bf2e8589ffceba2ac7b3d8eda2f703ca7a69fd7&v=4"
+                                    alt="user-img">
+                            </div>
+                            <div>
+                                <h4>Fernando López Ramírez</h4>
+                                <p style="font-size: 20px;">
+                                    I'm a 21 year old Robotics Engineering Student & Full Stack Web Developer;
+                                    passionate about technology, music, sports and pets. I am studying at Tecnológico de
+                                    Monterrey en Puebla, MX with id: A07144620.
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h4>Fernando López Ramírez</h4>
-                            <p style="font-size: 20px;">
-                                I'm a 21 years old Robotics Engineering Student & Full Stack Web Developer; passionate about technology, music, sports and pets. I am studying at Tecnológico de Monterrey en Puebla, MX with id: A07144620.
-                            </p>
-                        </div>
-                    </div>
-                    <br><br><br>
-                    <div class="user-contact">
-                        <div class="img-user">
-                            <img 
-                                src="https://i.scdn.co/image/ab6775700000ee850cea4a019f0a59ab60a76d98"
-                                alt="user-img"
-                            >
-                        </div>
-                        <div>
-                            <h4>Isser Kaleb Antonio Vásquez</h4>
-                            <p style="font-size: 20px;">
-                                I am a 21 year old Robotics and Digital Systems student who likes technology, programming, video games and sports. I am studying at the Tecnológico de Monterrey with id: A01732213.
-                            </p>
+                        <br><br><br>
+                        <div class="user-contact">
+                            <div class="img-user">
+                                <img src="https://i.scdn.co/image/ab6775700000ee850cea4a019f0a59ab60a76d98"
+                                    alt="user-img">
+                            </div>
+                            <div>
+                                <h4>Isser Kaleb Antonio Vásquez</h4>
+                                <p style="font-size: 20px;">
+                                    I am a 21 year old Robotics and Digital Systems student who likes technology,
+                                    programming, video games and sports. I am studying at the Tecnológico de Monterrey
+                                    with id: A01732213.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Modal Contact -->
+    <div class="modal fade" id="modal-contact" tabindex="-1" aria-labelledby="modal-contactLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px; margin-left: -150px;">
+                <div class="modal-body">
+                    <div class="container">
+                        <h1 class="mb-3" style="text-align: center;">Contact</h1>
+                        <form>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="exampleInputEmail1"
+                                    aria-describedby="emailHelp"
+                                    autocomplete="off"
+                                >
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="subject"
+                                    autocomplete="off"
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea
+                                    class="form-control"
+                                    id="message"
+                                    rows="3"
+                                    style="resize: none;"
+                                >
+                                </textarea>
+                            </div>
+
+                            <div style="justify-content: center; text-align: center;">
+                                <button type="submit" class="btn btn-primary" style="justify-content: center;">Send</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
