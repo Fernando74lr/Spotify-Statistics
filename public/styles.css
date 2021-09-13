@@ -42,6 +42,29 @@ body {
     color: #e5e5e5;
 }
 
+.login-styles{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+}
+
+.login-styles > div{
+    margin: 10px;
+}
+
+.button-login-style{
+    background-color: rgb(29, 185, 84);
+    border: 1px solid transparent;
+}
+
+.button-login-style:hover{
+    background-color: rgba(29, 185, 84, 0.60);
+    border: 1px solid transparent;
+}
+
+
 #dashboard {
     height: 655px;
     display: flex;
