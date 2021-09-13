@@ -95,3 +95,21 @@
 ul {
     list-style-type: none;
 }
+
+/* Contact */
+.user-contact {
+    display: flex;
+}
+
+.user-contact .img-user {
+    margin-right: 50px;
+}
+
+.user-contact .img-user img {
+    width: 215px;
+    height: 215px;
+    border-radius: 100%;
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.56);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.56);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.56);
+}
