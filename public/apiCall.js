@@ -52,6 +52,26 @@
 					console.log("Top Artist In The Last Month");
 					console.log(response);
 
+					(response.items).forEach(item => {
+                        $('#artists-last-month ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.images[0].url}" alt="album-song">
+                                    <p
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
 					$('#login').hide();
 				}
 			});
@@ -66,6 +86,26 @@
 					console.log("Top Artist Several Years");
 					console.log(response);
 
+					(response.items).forEach(item => {
+                        $('#artists-forever ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.images[0].url}" alt="album-song">
+                                    <p
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
+
 					$('#login').hide();
 				}
 			});
@@ -79,6 +119,26 @@
 				success: function(response) {
 					console.log("Top Songs In The Last Month");
 					console.log(response);
+
+					(response.items).forEach(item => {
+                        $('#songs-last-month ul').append(`
+                            <li>
+                                <div id="item-frame">
+                                    <img src="${item.album.images[0].url}" alt="album-song">
+                                    <p
+                                        id="${item.id}"
+                                        onclick="copyToClipboard('#${item.id}')"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Click to share it!"
+                                        data-link="${item.external_urls.spotify}"
+                                    >
+                                        ${item.name}
+                                    </p>
+                                </div>
+                            </li>
+                        `);
+                    });
 
 					$('#login').hide();
 				}
@@ -127,7 +187,12 @@
 				},
 				success: function(response) {
 					(response.items).forEach(element => {
-						topAlbum.push(element.album.name);
+						topAlbum.push({
+							name: element.album.name,
+							image: element.album.images[0].url,
+							id: element.id,
+							url: element.album.external_urls.spotify
+						});
 					});
 					// Temporal variables
 					var count = 0;
@@ -135,27 +200,52 @@
 					var flag = true;
 					for (let i = 0; i < topAlbum.length; i++) {
 						topAlbumTemp.forEach(element => {
-							if (element.name == topAlbum[i])
+							if (element.name == topAlbum[i].name)
 								flag = false;
 						});
 
 						if (flag) {
 							for (let j = 0; j < topAlbum.length; j++)
-								if (topAlbum[i] == topAlbum[j])
+								if (topAlbum[i].name == topAlbum[j].name)
 									count++;
 
 							topAlbumTemp.push({
-								name: topAlbum[i],
-								repeated: count
+								name: topAlbum[i].name,
+								repeated: count,
+								image: topAlbum[i].image,
+								id: topAlbum[i].id,
+								url: topAlbum[i].url
 							});
 							count = 0;
 						}
 						flag = true;
 					}
 
+					console.log(topAlbum);
+					console.log(topAlbumTemp);
 					topAlbum = bubbleSort(topAlbumTemp);
 					console.log("Top Album Several Years");
 					console.log(topAlbum);
+
+					for (let i = 0; i < 10; i++) {
+						$('#albums ul').append(`
+								<li>
+									<div id="item-frame">
+										<img src="${topAlbum[i].image}" alt="album-song">
+										<p
+											id="${topAlbum[i].id}"
+											onclick="copyToClipboard('#${topAlbum[i].id}')"
+											data-bs-toggle="tooltip"
+											data-bs-placement="bottom"
+											title="Click to share it!"
+											data-link="${topAlbum[i].url}"
+										>
+											${topAlbum[i].name}
+										</p>
+									</div>
+								</li>
+							`);
+					}
 
 					$('#login').hide();
 				}
@@ -202,6 +292,16 @@
 					topGenres = bubbleSort(topGenresTemp);
 					console.log("Top Genres");
 					console.log(topGenres);
+
+					for (let i = 0; i < 10; i++) {
+						$('#genres ul').append(`
+								<li class="list-group-item">
+									<p>
+										${topGenres[i].name}
+									</p>
+								</li>
+							`);
+					}
 
 					$('#login').hide();
 				}
