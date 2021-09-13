@@ -1,47 +1,43 @@
 <!doctype html>
 <html>
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Statistics</title>
     <!-- Bootstrap v5.0 -->
-        <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous"
-    >
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
 
     <!-- Sweet Alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="stylesheet" href="styles.css">
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
-      <div id="login">
-        <h1>Authorization Code</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
-      </div>
+        <div id="login">
+            <h1>Authorization Code</h1>
+            <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+        </div>
     </div>
 
     <div id="dashboard" class="d-none">
         <div id="user-profile">
             <div id="user-profile-picture">
-                <img
-                    id="profile-picture"
-                    alt="user-profile-picture"
-                >
+                <img id="profile-picture" alt="user-profile-picture">
             </div>
             <div id="username">
                 <h4></h4>
             </div>
             <div id="contact-info">
-                <a href="#">About us</a>
-                <a href="#">Contact</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-contact-info">About us</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-contact">Contact</a>
             </div>
         </div>
 
@@ -52,61 +48,173 @@
             <div id="tops">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="songs-forever-tab" data-bs-toggle="tab" data-bs-target="#songs-forever" type="button" role="tab" aria-controls="songs-forever" aria-selected="true">Songs of all time</button>
+                        <button class="nav-link active" id="songs-forever-tab" data-bs-toggle="tab"
+                            data-bs-target="#songs-forever" type="button" role="tab" aria-controls="songs-forever"
+                            aria-selected="true">Songs of all time</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="songs-last-month-tab" data-bs-toggle="tab" data-bs-target="#songs-last-month" type="button" role="tab" aria-controls="songs-last-month" aria-selected="false">Songs of the last month</button>
+                        <button class="nav-link" id="songs-last-month-tab" data-bs-toggle="tab"
+                            data-bs-target="#songs-last-month" type="button" role="tab" aria-controls="songs-last-month"
+                            aria-selected="false">Songs of the last month</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="artists-forever-tab" data-bs-toggle="tab" data-bs-target="#artists-forever" type="button" role="tab" aria-controls="artists-forever" aria-selected="false">Artists of all time</button>
+                        <button class="nav-link" id="artists-forever-tab" data-bs-toggle="tab"
+                            data-bs-target="#artists-forever" type="button" role="tab" aria-controls="artists-forever"
+                            aria-selected="false">Artists of all time</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="artists-last-month-tab" data-bs-toggle="tab" data-bs-target="#artists-last-month" type="button" role="tab" aria-controls="artists-last-month" aria-selected="false">Artists of the last month</button>
-                      </li>
-                      <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="albums-tab" data-bs-toggle="tab" data-bs-target="#albums" type="button" role="tab" aria-controls="albums" aria-selected="false">Albums</button>
-                      </li>
-                      <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="genres-tab" data-bs-toggle="tab" data-bs-target="#genres" type="button" role="tab" aria-controls="genres" aria-selected="false">Genres</button>
+                        <button class="nav-link" id="artists-last-month-tab" data-bs-toggle="tab"
+                            data-bs-target="#artists-last-month" type="button" role="tab"
+                            aria-controls="artists-last-month" aria-selected="false">Artists of the last month</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="albums-tab" data-bs-toggle="tab" data-bs-target="#albums"
+                            type="button" role="tab" aria-controls="albums" aria-selected="false">Albums</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="genres-tab" data-bs-toggle="tab" data-bs-target="#genres"
+                            type="button" role="tab" aria-controls="genres" aria-selected="false">Genres</button>
                     </li>
                 </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="songs-forever" role="tabpanel" aria-labelledby="songs-forever-tab">
-                          <ul id="tops-items">
-                          </ul>
-                        </div>
-                        <div class="tab-pane fade" id="songs-last-month" role="sond" aria-labelledby="songs-last-month-tab">
-                          <ul id="tops-items">
-                          </ul>
-                        </div>
-                        <div class="tab-pane fade" id="artists-forever" role="tabpanel" aria-labelledby="artists-forever-tab">
-                          <ul id="tops-items">
-                          </ul>
-                        </div>
-                        <div class="tab-pane fade show" id="artists-last-month" role="tabpanel" aria-labelledby="artists-last-month-tab">
-                          <ul id="tops-items">
-                          </ul>
-                        </div>
-                        <div class="tab-pane fade" id="albums" role="tabpanel" aria-labelledby="albums-tab">
-                          <ul id="tops-items">
-                          </ul>
-                        </div>
-                        <div class="tab-pane fade" id="genres" role="tabpanel" aria-labelledby="genres-tab">
-                          <ul class="list-group mt-3" id="tops-items-genrer">
-                          </ul>
-                        </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="songs-forever" role="tabpanel"
+                        aria-labelledby="songs-forever-tab">
+                        <ul id="tops-items">
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="songs-last-month" role="sond" aria-labelledby="songs-last-month-tab">
+                        <ul id="tops-items">
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="artists-forever" role="tabpanel"
+                        aria-labelledby="artists-forever-tab">
+                        <ul id="tops-items">
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade show" id="artists-last-month" role="tabpanel"
+                        aria-labelledby="artists-last-month-tab">
+                        <ul id="tops-items">
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="albums" role="tabpanel" aria-labelledby="albums-tab">
+                        <ul id="tops-items">
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="genres" role="tabpanel" aria-labelledby="genres-tab">
+                        <ul class="list-group mt-3" id="tops-items-genrer">
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer">
-    </script>
-    <script type="text/javascript" src="apiCall.js"></script>
-  </body>
-</html>
 
+    <!-- Modal About Us -->
+    <div class="modal fade" id="modal-contact-info" tabindex="-1" aria-labelledby="modal-contact-infoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px; margin-left: -150px;">
+                <div class="modal-body">
+                    <div class="container">
+                        <h1 class="mb-5" style="text-align: center;">About us</h1>
+                        <div class="user-contact">
+                            <div class="img-user">
+                                <img style="margin-top: -20px;"
+                                    src="https://avatars.githubusercontent.com/u/39963559?s=400&u=8bf2e8589ffceba2ac7b3d8eda2f703ca7a69fd7&v=4"
+                                    alt="user-img">
+                            </div>
+                            <div>
+                                <h4>Fernando López Ramírez</h4>
+                                <p style="font-size: 20px;">
+                                    I'm a 21 year old Robotics Engineering Student & Full Stack Web Developer;
+                                    passionate about technology, music, sports and pets. I am studying at Tecnológico de
+                                    Monterrey en Puebla, MX with id: A07144620.
+                                </p>
+                            </div>
+                        </div>
+                        <br><br><br>
+                        <div class="user-contact">
+                            <div class="img-user">
+                                <img src="https://i.scdn.co/image/ab6775700000ee850cea4a019f0a59ab60a76d98"
+                                    alt="user-img">
+                            </div>
+                            <div>
+                                <h4>Isser Kaleb Antonio Vásquez</h4>
+                                <p style="font-size: 20px;">
+                                    I am a 21 year old Robotics and Digital Systems student who likes technology,
+                                    programming, video games and sports. I am studying at the Tecnológico de Monterrey
+                                    with id: A01732213.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Contact -->
+    <div class="modal fade" id="modal-contact" tabindex="-1" aria-labelledby="modal-contactLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px; margin-left: -150px;">
+                <div class="modal-body">
+                    <div class="container">
+                        <h1 class="mb-3" style="text-align: center;">Contact</h1>
+                        <form id="form-contact">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    aria-describedby="emailHelp"
+                                    autocomplete="off"
+                                >
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="subject"
+                                    autocomplete="off"
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea
+                                    class="form-control"
+                                    id="message"
+                                    rows="3"
+                                    style="resize: none;"
+                                >
+                                </textarea>
+                            </div>
+                        </form>
+                        <div style="justify-content: center; text-align: center;">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                style="justify-content: center;"
+                                onclick="submitForm()"
+                            >
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+    <script type="text/javascript" src="apiCall.js"></script>
+</body>
+
+</html>
