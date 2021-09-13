@@ -293,6 +293,16 @@
 					console.log("Top Genres");
 					console.log(topGenres);
 
+					for (let i = 0; i < 10; i++) {
+						$('#genres ul').append(`
+								<li class="list-group-item">
+									<p>
+										${topGenres[i].name}
+									</p>
+								</li>
+							`);
+					}
+
 					$('#login').hide();
 				}
 			});
